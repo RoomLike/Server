@@ -5,7 +5,7 @@ import bottle.ext.sqlite
 from bottle import SimpleTemplate
 
 app = bottle.Bottle()
-plugin = bottle.ext.sqlite.Plugin(dbfile='/home/tinyiota/development/RoomLike/Server/Server/tmp/test.db')
+plugin = bottle.ext.sqlite.Plugin(dbfile='/home/tinyiota/development/RoomLike/Server/Server/db/test.db')
 app.install(plugin)
 
 @app.route('/show/:name')
