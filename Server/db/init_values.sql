@@ -48,20 +48,20 @@ VALUES
 
 INSERT INTO Objects
 (
-	GroupID, MakerID, `Text`, ObjectID, DibsUser, CompletedUser, TimeCreated, Amount 
+	GroupID, MakerID, `Text`, ObjectID, ObjectType, DibsUser, CompletedUser, TimeCreated, Amount 
 )
 VALUES
 (
-	1, 1, "Dishes", 1, NULL, NULL, date('now'), NULL
+	1, 1, "Dishes", 1, "Chore", NULL, NULL, date('now'), NULL
 ),
 (
-	1, 2, "Vacuum", 2, NULL, NULL, date('now'), NULL
+	1, 2, "Vacuum", 2, "Chore", NULL, NULL, date('now'), NULL
 ),
 (
-	1, 3, "Laundry", 3, NULL, NULL, date('now'), NULL
+	1, 3, "Laundry", 3, "Chore", NULL, NULL, date('now'), NULL
 ),
 (
-	1, 4, "Toilet Paper", 4, NULL, NULL, date('now'), NULL
+	1, 4, "Toilet Paper", 4, "GroceryItem", NULL, NULL, date('now'), NULL
 );
 
 INSERT INTO Schedules
@@ -98,4 +98,22 @@ VALUES
 ),
 (
 	4, 4
+);
+
+INSERT INTO GroupsObjects
+(
+	GroupID, ObjectID
+)
+VALUES
+(
+	1, 1
+),
+(
+	1, 2
+),
+(
+	1, 3
+),
+(
+	1, 4
 );

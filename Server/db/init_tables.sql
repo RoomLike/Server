@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Objects
 	, MakerID INTEGER 
 	, `Text` TEXT 
 	, ObjectID INTEGER 
+	, ObjectType TEXT
 	, DibsUser INTEGER 
 	, CompletedUser INTEGER 
 	, TimeCreated DATE 
@@ -57,4 +58,12 @@ CREATE TABLE IF NOT EXISTS ObjectsSchedules
 	, ObjectID INTEGER
 	, FOREIGN KEY (ScheduleID) REFERENCES Schedules (ScheduleID)
 	, FOREIGN KEY (ObjectID) REFERENCES Objects (ObjectID)
+);
+
+CREATE TABLE IF NOT EXISTS GroupsObjects
+(
+	  GroupID INTEGER
+	, ObjectID INTEGER
+	, FOREIGN KEY (GroupID) REFERENCES Groups (GroupID)
+	, FOREIGN KEY (ObjectID) REFERENCES `Objects` (ObjectID)
 );
