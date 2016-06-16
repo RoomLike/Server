@@ -40,12 +40,13 @@ def get_chores(objectType, groupID):
 	conn = sqlite3.connect('../db/test.db')
 	cursor = conn.cursor()
 	cursor.execute('SELECT Groups.GroupID, Objects.ObjectType, Objects.`Text` FROM GroupsObjects INNER JOIN Groups ON GroupsObjects.GroupID = Groups.GroupID INNER JOIN Objects ON GroupsObjects.ObjectID = Objects.ObjectID WHERE Objects.ObjectType = ? AND GroupsObjects.GroupID = ?', [objectType, groupID])
-	result = ""
+	result = "{"
 	while True:
 		row = cursor.fetchone()
 		if row == None:
 			break
-		result = result + ' ' + str(row[0]) + ' ' + str(row[1]) + ' ' + str(row[2])
+		result = result + '[ObjectType:' + str(row[0]) + ' ' + str(row[1]) + ' ' + str(row[2]) + ']'
+	result = result + ']'
 	cursor.close()
 	return result
 
@@ -81,9 +82,9 @@ def add_user_to_group(userID, groupID):
 def get_group_list(groupID, groupName):
 	conn = sqlite3.connect('../db/test.db')
 	cursor = conn.cursor()
-	if groupID = None:
+	if groupID == "":
 		cursor.execute('SELECT * FROM Groups WHERE GroupName LIKE "%?%"', [groupName])
-	else if groupName = None:
+	elif groupName == "":
 		cursor.execute('SELECT * FROM Groups WHERE GroupID LIKE "%?%"', [groupID])
 	else:
 		cursor.execute('SELECT * FROM Groups WHERE GroupID LIKE "%?%" AND GroupName LIKE "%?%"', [groupID, groupName])
