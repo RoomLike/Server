@@ -1,22 +1,25 @@
 INSERT INTO Users
 (
-	UserID, UserName
+	UserID, UserName, Password
 )
 VALUES
 (
-	1, "Curtis"
+	1, "Curtis", "1"
 ),
 (
-	2, "Sophia"
+	2, "Sophia", "2"
 ),
 (
-	3, "Travis"
+	3, "Travis", "3"
 ),
 (
-	4, "Karyn"
+	4, "Karyn", "4"
 ),
 (
-	5, "Emily"
+	5, "Emily", "5"
+),
+(
+	6, "Nik", "6"
 );
 
 INSERT INTO Groups
@@ -48,20 +51,20 @@ VALUES
 
 INSERT INTO Objects
 (
-	GroupID, MakerID, `Text`, ObjectID, ObjectType, DibsUser, CompletedUser, TimeCreated, Amount 
+	GroupID, MakerID, `Text`, ObjectType, DibsUser, CompletedUser, TimeCreated, Amount 
 )
 VALUES
 (
-	1, 1, "Dishes", 1, "Chore", NULL, NULL, date('now'), NULL
+	1, 1, "Dishes", "Chore", NULL, NULL, date('now'), NULL
 ),
 (
-	1, 2, "Vacuum", 2, "Chore", NULL, NULL, date('now'), NULL
+	1, 2, "Vacuum", "Chore", NULL, NULL, date('now'), NULL
 ),
 (
-	1, 3, "Laundry", 3, "Chore", NULL, NULL, date('now'), NULL
+	1, 3, "Laundry", "Chore", NULL, NULL, date('now'), NULL
 ),
 (
-	1, 4, "Toilet Paper", 4, "GroceryItem", NULL, NULL, date('now'), NULL
+	1, 4, "Toilet Paper", "GroceryItem", NULL, NULL, date('now'), NULL
 );
 
 INSERT INTO Schedules
@@ -100,20 +103,17 @@ VALUES
 	4, 4
 );
 
-INSERT INTO GroupsObjects
+INSERT INTO Objects
 (
-	GroupID, ObjectID
+	GroupID, MakerID, ObjectType, Text, TimeCreated
 )
 VALUES
 (
-	1, 1
+	1, 1, "Message", "Going to soops", datetime('now')
 ),
 (
-	1, 2
+	1, 2, "Message", "Get me some cookies", datetime('now')
 ),
 (
-	1, 3
-),
-(
-	1, 4
+	1, 4, "Message", "Get me some lettuce", datetime('now')
 );

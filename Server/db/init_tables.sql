@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS Users
 (
 	  UserID INTEGER
 	, UserName TEXT
+	, Password TEXT
 );
 
 CREATE TABLE IF NOT EXISTS Groups
@@ -23,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Objects
 	  GroupID INTEGER 
 	, MakerID INTEGER 
 	, `Text` TEXT 
-	, ObjectID INTEGER 
+	, ObjectID INTEGER PRIMARY KEY 
 	, ObjectType TEXT
 	, DibsUser INTEGER 
 	, CompletedUser INTEGER 
@@ -58,12 +59,4 @@ CREATE TABLE IF NOT EXISTS ObjectsSchedules
 	, ObjectID INTEGER
 	, FOREIGN KEY (ScheduleID) REFERENCES Schedules (ScheduleID)
 	, FOREIGN KEY (ObjectID) REFERENCES Objects (ObjectID)
-);
-
-CREATE TABLE IF NOT EXISTS GroupsObjects
-(
-	  GroupID INTEGER
-	, ObjectID INTEGER
-	, FOREIGN KEY (GroupID) REFERENCES Groups (GroupID)
-	, FOREIGN KEY (ObjectID) REFERENCES `Objects` (ObjectID)
 );
