@@ -24,11 +24,11 @@ VALUES
 
 INSERT INTO Groups
 (
-	GroupID, GroupName
+	GroupName
 )
 VALUES
 (
-	1, "Champs"
+	"Champs"
 );
 
 INSERT INTO UsersGroups
