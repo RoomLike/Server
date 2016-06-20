@@ -61,7 +61,16 @@ def get_all(groupID):
 			break
 		result = result + '{"UserID":' + str(row[0]) + ', "UserName":"' + str(row[1]) + '", "GroupID":' + str(row[2]) + ', "GroupName":"' + str(row[3]) + '"},'
 	result = result[0:-1]
-	result = result + ']}'
+	result = result + '],'
+        result = result + '"Schedules":['
+        cursor.execute('SELECT Schedules.ScheduleID, Objects.ObjectID, Schedules.Frequency, Schedules.NextDate, Schedules.LastDate, Schedules.DaysOfWeek, Schedules.DayOfMonth, Schedules.MonthOfYear, Schedules.Year, Schedules.Hour, Schedules.Minute, Schedules.isAM, Schedules.RepeatEvery, Schedules.AnyDay FROM ObjectsSchedules INNER JOIN Objects ON Objects.ObjectID = ObjectsSchedules.ObjectID INNER JOIN Schedules ON Schedules.ScheduleID = ObjectsSchedules.ScheduleID WHERE Objects.GroupID = ' + groupID)
+        while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                result = result + '{"ScheduleID":' + str(row[0]) + ',"ObjectID":' + str(row[1]) + ',"Frequency":"' + str(row[2]) + '", "NextDate":"' + str(row[3]) + '","LastDate":"' + str(row[4]) + '","DaysOfWeek":"' + str(row[5]) + '","DayOfMonth":' + str(row[6]) + ',"MonthOfYear":' + str(row[7]) + ',"Year":' + str(row[8]) + ',"Hour":' + str(row[9]) + ',"Minute":' + str(row[10]) + ',"isAM":' + str(row[11]) + ',"RepeatEvery":' + str(row[12]) + ', "Any":' + str(row[13]) + '},'
+        result = result[0:-1]
+        result = result + ']}'
 	cursor.close()
 	return result
 
